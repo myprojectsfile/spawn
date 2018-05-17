@@ -2,10 +2,7 @@
 const spawn = require('child_process').spawn;
 const which = require('which');
 
-const spa = spawn('ls', ['-lh', '/usr']);
-
-// const npm = which.sync('npm');
-// const spa = spawn(npm);
+const spa = spawn('lst', ['-lh', '/usr']);
 
 spa.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
