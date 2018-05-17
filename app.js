@@ -9,7 +9,7 @@ downloadAsync()
 function downloadAsync() {
     return new Promise((resolve, reject) => {
         const spa = spawn('./image-downloader.sh', ['mysql', 'mysql:latest']);
-
+        return spa;
         spa.stdout.on('data', (data) => {
             console.log(`downloading ...`);
         });
@@ -20,7 +20,7 @@ function downloadAsync() {
         });
 
         spa.on('close', (code) => {
-            if (code == 1) resolve(code);
+            if (code == 0) resolve(code);
             else reject(code);
         });
     })
