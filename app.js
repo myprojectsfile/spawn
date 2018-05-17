@@ -8,13 +8,13 @@ downloadAsync()
 
 function downloadAsync() {
     return new Promise((resolve, reject) => {
-        const spa = spawn('./image-downloader.sh', ['mysql', 'mysql:latest']);
+        const spa = spawn('./image-downloader.sh', ['alpine', 'alpine:latest']);
         return spa;
+
         spa.stdout.on('data', (data) => {
             console.log(`downloading ...`);
         });
-
-
+        
         spa.stderr.on('data', (error) => {
             reject(error);
         });
