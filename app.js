@@ -8,9 +8,9 @@ downloadAsync()
 
 function downloadAsync() {
     return new Promise((resolve, reject) => {
-        const spa = spawn('./image-downloader.sh', ['alpine', 'alpine:latest']);
+        const spa = spawn('./image-downloader.sh', ['microsfto_dotnet_latest', 'microsoft/dotnet:latest']);
 
-        
+
         spa.stdout.on('data', (data) => {
             console.log(`downloading ...`);
         });
