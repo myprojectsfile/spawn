@@ -10,6 +10,7 @@ function downloadAsync() {
     return new Promise((resolve, reject) => {
         const spa = spawn('./image-downloader.sh', ['alpine', 'alpine:latest']);
 
+        
         spa.stdout.on('data', (data) => {
             console.log(`downloading ...`);
         });
