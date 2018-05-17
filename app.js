@@ -2,21 +2,26 @@
 const spawn = require('child_process').spawn;
 const which = require('which');
 
-const spa = spawn('./image-downloader.sh', ['mysql', 'mysql:latest']);
+downloadAsync()
+    .then(() => { console.log('download successfull') })
+    .catch((error) => { console.log('download with error:' + error) });
 
-spa.stdout.on('data', (data) => {
-    console.log(`stdout: ${data}`);
-});
+function downloadAsync() {
+    return new Promise((resolve, reject) => {
+        const spa = spawn('./image-downloader.sh', ['mysql', 'mysql:latest']);
+
+        spa.stdout.on('data', (data) => {
+            console.log(`downloading ...`);
+        });
 
 
-spa.stderr.on('data', (data) => {
-    console.log(`stderr: ${data}`);
-});
+        spa.stderr.on('data', (error) => {
+            reject(error);
+        });
 
-spa.on('end', (code) => {
-    console.log(`child process ended with code ${code}`);
-});
-
-spa.on('close', (code) => {
-    console.log(`child process exited with code ${code}`);
-});
+        spa.on('close', (code) => {
+            if (code == 1) resolve(code);
+            else reject(code);
+        });
+    })
+}
