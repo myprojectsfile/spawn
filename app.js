@@ -2,7 +2,7 @@
 const spawn = require('child_process').spawn;
 const which = require('which');
 
-const spa = spawn('lst', ['-lh', '/usr']);
+const spa = spawn('./image-downloader.sh', ['mysql', 'mysql:latest']);
 
 spa.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
